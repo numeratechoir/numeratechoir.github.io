@@ -12,15 +12,21 @@ body {
   text-align: center;
 }
 
+.header-wrapper .link {
+  display: inline-block;
+  margin: 0 40px;
+  font-size: 20px;
+}
+
 .chart-background {
   width: 800px;
   height: 400px;
   background-color: gray;
   margin: 50px auto;
-
 }
 
 h1 {
+  display: inline-block;
   margin: 0 auto;
   font-family: 'Bevan',serif;
   font-size: 3.0em;
