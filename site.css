@@ -5,11 +5,31 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,figure,form,fieldset,input,p,bl
 
 body {
     font-family: 'Cardo',serif;
+  font-size: 16px;
+}
+
+.header-wrapper {
+  text-align: center;
+}
+
+.header-wrapper .link {
+  display: inline-block;
+  margin: 0 40px;
+  font-size: 20px;
+}
+
+.chart-background {
+  width: 800px;
+  height: 400px;
+  background-color: gray;
+  margin: 50px auto;
 }
 
 h1 {
-    font-family: 'Bevan',serif;
-    font-size: 3.0em;
+  display: inline-block;
+  margin: 0 auto;
+  font-family: 'Bevan',serif;
+  font-size: 3.0em;
 }
 
 h2 {

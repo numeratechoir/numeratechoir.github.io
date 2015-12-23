@@ -1,0 +1,32 @@
+
+<div class="header-wrapper">
+  <a href="age.html?age=<%- age-1 %>" id="prev-link" class="link">&lt; <%- age - 1%></a>
+  <h1>Life expectancy for age <%- age %></h1>
+  <a href="age.html?age=<%- age+1 %>" id="next-link" class="link"><%- (age+1) %> &gt;</a>
+
+  <h4>There is a 50% chance you will live to at least age <%- expectedAge %></h4>
+</div>
+
+
+<div class='chart-background' id="chart"></div>
+
+
+<div class='data'>
+  <h3>
+    Chance of dying at a given age:
+  </h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Age</th>
+        <th>Chance</th>
+      </tr>
+    </thead>
+    <% _.each(data, function(row) { %>
+      <tr>
+        <td><%- row[0] %></td>
+        <td><%- row[1].toPrecision(6) %></td>
+      </tr>
+    <% }) %>
+  </table>
+</div>
