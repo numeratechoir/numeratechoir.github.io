@@ -12,6 +12,14 @@ body {
   text-align: center;
 }
 
+.chart-background {
+  width: 800px;
+  height: 400px;
+  background-color: gray;
+  margin: 50px auto;
+
+}
+
 h1 {
   margin: 0 auto;
   font-family: 'Bevan',serif;

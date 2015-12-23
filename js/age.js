@@ -38,7 +38,7 @@ require([
   };
 
   var urlParams = getUrlParams();
-  var age = urlParams.age || 30;
+  var age = parseInt(urlParams.age || 30);
   console.log(age);
   
   var data = getDataForAge(age);
