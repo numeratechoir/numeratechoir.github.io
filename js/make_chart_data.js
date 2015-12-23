@@ -13,7 +13,7 @@ define(['actuarial_table'], function(actuaryData) {
       var livingThisYear = 1 - dyingThisYear;
       var dyingInThisYearFromStart = livingFromStartToThisYear * dyingThisYear;
       livingFromStartToThisYear = livingFromStartToThisYear * livingThisYear;
-      output.push([i, dyingInThisYearFromStart]);
+      output.push([i+1, dyingInThisYearFromStart]);
     }
     return output;
   };

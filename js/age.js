@@ -39,23 +39,19 @@ require([
 
   var urlParams = getUrlParams();
   var age = parseInt(urlParams.age || 30);
-  console.log(age);
   
   var data = getDataForAge(age);
   
-  var html = homeTemplate({age: age});
-  console.log(html);
+  var max = _.max(data, function(row){ return row[1]; });
+  var maxChance = max[1];
+  var expectedAge = max[0];
+  
+  var html = homeTemplate({age: age, data: data, expectedAge: expectedAge});
 
   $('body').html(html);
 
-  var max = 0;
-  for(var i = 0; i < data.length; i ++) {
-    max = Math.max(data[i][1], max);
-  }
-  console.log(max);
-
   var x = d3.scale.linear().range([0, data.length]);
-  var y = d3.scale.linear().range([max, 0]);
+  var y = d3.scale.linear().range([maxChance, 0]);
 
   var xAxis = d3.svg.axis().scale(x).orient("bottom");
 
