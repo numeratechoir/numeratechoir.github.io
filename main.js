@@ -10,8 +10,8 @@ var regions = {
   , w = 925
   , h = 550
   , margin = 30
-  , startYear = 1960
-  , endYear = 2010
+  , startYear = 0
+  , endYear = 5
   , startAge = 20
   , endAge = 80
   , y = d3.scale.linear().domain([endAge, startAge]).range([0 + margin, h - margin])
@@ -36,32 +36,28 @@ d3.text('country-regions.csv', 'text/csv', function(text) {
 var startEnd = {}
   , countryCodes = {};
 d3.text('life-expectancy-cleaned-all.csv', 'text/csv', function(text) {
-    var countries = d3.csv.parseRows(text);
-    for (i = 1; i < countries.length; i++) {
-        var values = countries[i].slice(2, countries[i.length - 1]);
-        var currData = [];
-        countryCodes[countries[i][1]] = countries[i][0];
-        var started = false;
-        for (j = 0; j < values.length; j++) {
-            if (values[j] != '') {
-                currData.push({
-                    x: years[j],
-                    y: values[j]
-                });
-                if (!started) {
-                    startEnd[countries[i][1]] = {
-                        'startYear': years[j],
-                        'startVal': values[j]
-                    };
-                    started = true;
-                } else if (j == values.length - 1) {
-                    startEnd[countries[i][1]]['endYear'] = years[j];
-                    startEnd[countries[i][1]]['endVal'] = values[j];
-                }
+    var values = [1, 2, 10, 8, 1, 2];
+    var currData = [];
+    var started = false;
+    for (j = 0; j < values.length; j++) {
+        if (values[j] != '') {
+            currData.push({
+                x: years[j],
+                y: values[j]
+            });
+            if (!started) {
+                startEnd[countries[i][1]] = {
+                    'startYear': years[j],
+                    'startVal': values[j]
+                };
+                started = true;
+            } else if (j == values.length - 1) {
+                startEnd[countries[i][1]]['endYear'] = years[j];
+                startEnd[countries[i][1]]['endVal'] = values[j];
             }
         }
-        vis.append("svg:path").data([currData]).attr("country", countries[i][1]).attr("class", countries_regions[countries[i][1]]).attr("d", line).on("mouseover", onmouseover).on("mouseout", onmouseout);
     }
+    vis.append("svg:path").data([currData]).attr("country", countries[i][1]).attr("class", countries_regions[countries[i][1]]).attr("d", line).on("mouseover", onmouseover).on("mouseout", onmouseout);
 }
 );
 vis.append("svg:line").attr("x1", x(1960)).attr("y1", y(startAge)).attr("x2", x(2009)).attr("y2", y(startAge)).attr("class", "axis")
