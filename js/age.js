@@ -44,7 +44,16 @@ require([
   
   var max = _.max(data, function(row){ return row[1]; });
   var maxChance = max[1];
-  var expectedAge = max[0];
+
+  var expectedAge = age;
+  var pct = 0;
+  _.find(data, function(row) {
+    pct += row[1];
+    if (pct > 0.5) {
+      expectedAge = row[0];
+      return true;
+    }
+  });
   
   var html = homeTemplate({age: age, data: data, expectedAge: expectedAge});
 
