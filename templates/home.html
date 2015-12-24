@@ -1,45 +1,55 @@
 
-<div class="header-wrapper">
-  <a href="/?age=<%- age-1 %>&sex=<%- sex %>" id="prev-link" class="link">&lt; <%- age - 1%></a>
-  <h1>Life expectancy for age <%- age %></h1>
-  <a href="/?age=<%- age+1 %>&sex=<%- sex %>" id="next-link" class="link"><%- (age+1) %> &gt;</a>
+<div class="container">
 
-  <div class='sex-selector'>
-    <% if (sex == 'male') { %>
-      Male
-      |
-      <a href="?age=<%- age %>&sex=female">Female</a>
-    <% } else { %>
-      <a href="?age=<%- age %>&sex=male">Male</a>
-      |
-      Female
+  <div class="header-wrapper">
+    <% if (age > 0) { %>
+      <a href="/?age=<%- age-1 %>&sex=<%- sex %>" id="prev-link" class="link">&lt; <%- age - 1%></a>
     <% } %>
+    <h1>Life expectancy for age <%- age %></h1>
+    <% if (age < data.length) { %>
+      <a href="/?age=<%- age+1 %>&sex=<%- sex %>" id="next-link" class="link"><%- (age+1) %> &gt;</a>
+    <% } %>
+
+    <div class='sex-selector'>
+      <% if (sex == 'male') { %>
+        Male
+        |
+        <a href="?age=<%- age %>&sex=female">Female</a>
+      <% } else { %>
+        <a href="?age=<%- age %>&sex=male">Male</a>
+        |
+        Female
+      <% } %>
+    </div>
+
+    <h4>There is a 50% chance you will live to at least age <%- expectedAge %></h4>
   </div>
 
-  <h4>There is a 50% chance you will live to at least age <%- expectedAge %></h4>
-</div>
+
+  <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+  <div class='data'>
+    <button id='plot'>Redraw</button>
+    <h3>
+      Chance of dying at a given age:
+    </h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Age</th>
+          <th>Chance</th>
+        </tr>
+      </thead>
+      <% _.each(data, function(row) { %>
+        <tr>
+          <td>
+            <a href="/?age=<%- row[0] %>&sex=<%- sex %>"><%- row[0] %></a>
+          </td>
+          <td><%- row[1].toPrecision(6) %></td>
+        </tr>
+      <% }) %>
+    </table>
+  </div>
 
-
-<div class='data'>
-  <button id='plot'>Redraw</button>
-  <h3>
-    Chance of dying at a given age:
-  </h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Age</th>
-        <th>Chance</th>
-      </tr>
-    </thead>
-    <% _.each(data, function(row) { %>
-      <tr>
-        <td><%- row[0] %></td>
-        <td><%- row[1].toPrecision(6) %></td>
-      </tr>
-    <% }) %>
-  </table>
 </div>

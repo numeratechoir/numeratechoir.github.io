@@ -69,7 +69,7 @@ require([
       },
       yAxis: {
         title: {
-          text: 'Temperature (°C)'
+          text: 'Chance of Death'
         },
         plotLines: [{
           value: 0,
@@ -79,13 +79,14 @@ require([
       },
       series: [{
         name: 'Baseline Life Expectancy',
-        data: _.map(data, function(d) { return d[1]; })
+        data: _.map(data, function(d) { return d[1]; }),
+        animation: false,
       }]
     });
 
     var plot = function(series_data) {
       var chart = $('#container').highcharts();
-      var values = _.map(series_data, function(d) { return d[1]; })
+      var values = _.map(series_data, function(d) { return d[1]; });
       if (chart.series.length === 1) {
         chart.addSeries({
           name: 'Customized Life Expectancy',
@@ -97,8 +98,8 @@ require([
     };
 
     $('#plot').click(function () {
-      for (k in data) {
-        data[k][1] = data[k][1] * 2
+      for (var k in data) {
+        data[k][1] = data[k][1] * 2;
       }
       plot(data);
     });
