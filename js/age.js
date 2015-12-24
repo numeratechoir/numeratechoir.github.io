@@ -77,6 +77,10 @@ require([
           color: '#808080'
         }]
       },
+      tooltip: {
+        headerFormat: '',
+        pointFormat: 'Chance of Death at age {point.x}: <b>{point.y:.4f}</b>',
+      },
       series: [{
         name: 'Baseline Life Expectancy',
         data: _.map(data, function(d) { return d[1]; }),
