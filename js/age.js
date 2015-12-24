@@ -58,7 +58,7 @@ require([
       sex: sex,
     });
   
-    $('.viewport').html(html);
+    $('#viewport').html(html);
   
     $('#container').highcharts({
       title: {
