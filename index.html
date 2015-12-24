@@ -11,75 +11,81 @@
     <script type="text/javascript" src="/js/age.js"></script>
     <script type="text/javascript">
       $(function () {
-          $('#total').highcharts({
-              chart: {
-                  type: 'bar'
-              },
-              title: {
-                  text: 'Chance of Death'
-              },
-              yAxis: {
-                  min: 0,
-                  max: 100,
-                  title: {
-                      text: 'Percent'
-                  }
-              },
-              legend: {
-                  reversed: true
-              },
-              plotOptions: {
-                  series: {
-                      stacking: 'normal'
-                  }
-              },
-              series: [{
-                  name: 'Cars',
-                  data: [1]
-              }, {
-                  name: 'Bikes',
-                  data: [1]
-              }, {
-                  name: 'Planes',
-                  data: [1]
-              }]
-          });
-          $('#zoomed').highcharts({
-              chart: {
-                  type: 'bar'
-              },
-              title: {
-                  text: 'Likely Causes'
-              },
-              yAxis: {
-                  min: 0,
-                  max: 100,
-                  title: {
-                      text: 'Percent'
-                  }
-              },
-              legend: {
-                  reversed: true
-              },
-              plotOptions: {
-                  series: {
-                      stacking: 'normal'
-                  }
-              },
-              series: [{
-                  name: 'Cars',
-                  data: [1]
-              }, {
-                  name: 'Bikes',
-                  data: [1]
-              }, {
-                  name: 'Planes',
-                  data: [1]
-              }]
-          });
-          
-          var chart = $('#container').highcharts();
-          //chart.series[0].setValue([15])
+        $.get('data/dangers.json', function(data) {
+          // do something with your data
+        });
+
+
+        $('#total').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Chance of Death'
+            },
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Percent'
+                }
+            },
+            legend: {
+                reversed: true
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'normal'
+                }
+            },
+            series: [{
+                name: 'Cars',
+                data: [1]
+            }, {
+                name: 'Bikes',
+                data: [1]
+            }, {
+                name: 'Planes',
+                data: [1]
+            }]
+        });
+
+        $('#zoomed').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Likely Causes'
+            },
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Percent'
+                }
+            },
+            legend: {
+                reversed: true
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'normal'
+                }
+            },
+            series: [{
+                name: 'Cars',
+                data: [1]
+            }, {
+                name: 'Bikes',
+                data: [1]
+            }, {
+                name: 'Planes',
+                data: [1]
+            }]
+        });
+        
+        //var chart = $('#container').highcharts();
+        //chart.series[0].setValue([15])
 
           $("input.cause").keyup(function() {
               var planeVal = parseInt($("#a-amt").val())
