@@ -78,6 +78,26 @@ require([
         data: _.map(data, function(d) { return d[1] })
       }]
     });
+
+    var plot = function(series_data) {
+      var chart = $('#container').highcharts();
+      if (chart.series.length === 1) {
+        chart.addSeries({
+          name: 'Customized Life Expectancy',
+          data: _.map(series_data, function(d) { return d[1] })
+        });
+      } else {
+        chart.series[1].setData(series_data);
+      }
+    };
+
+    $('#plot').click(function () {
+      for (k in data) {
+        data[k][1] = data[k][1] * 2
+      }
+      plot(data);
+    });
+
   });
 
 });
