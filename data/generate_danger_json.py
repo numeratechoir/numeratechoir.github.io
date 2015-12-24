@@ -19,12 +19,12 @@ def wisqars_to_json(fname):
              key = "%s-%s" % (row.Sex[0], row.AgeinYears)
              if row.Deaths == '.' or row.Population == '.':
                  break
-             rate = float(row.Deaths) / float(row.Population)
+             rate = float(row.Deaths) * 100000 / float(row.Population)
              data[key] = rate
     return data
 
 
-death_types = [
+wisqar_death_types = [
     'cut_pierce',
     'drowning',
     'drug_poisoning',
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     sex_year_data = {}  # keyed on a sex/age string like so: 'M-32'
-    for death_type in death_types:
+    for death_type in wisqar_death_types:
         wisqar_data = wisqars_to_json('wisqars/%s.csv' % death_type)
         for key, value in wisqar_data.iteritems():
             if key not in sex_year_data:
