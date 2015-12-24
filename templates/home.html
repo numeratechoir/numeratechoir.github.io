@@ -1,8 +1,12 @@
 
 <div class="header-wrapper">
-  <a href="/?age=<%- age-1 %>&sex=<%- sex %>" id="prev-link" class="link">&lt; <%- age - 1%></a>
+  <% if (age > 0) { %>
+    <a href="/?age=<%- age-1 %>&sex=<%- sex %>" id="prev-link" class="link">&lt; <%- age - 1%></a>
+  <% } %>
   <h1>Life expectancy for age <%- age %></h1>
-  <a href="/?age=<%- age+1 %>&sex=<%- sex %>" id="next-link" class="link"><%- (age+1) %> &gt;</a>
+  <% if (age < data.length) { %>
+    <a href="/?age=<%- age+1 %>&sex=<%- sex %>" id="next-link" class="link"><%- (age+1) %> &gt;</a>
+  <% } %>
 
   <div class='sex-selector'>
     <% if (sex == 'male') { %>
@@ -28,7 +32,7 @@
   <h3>
     Chance of dying at a given age:
   </h3>
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th>Age</th>
@@ -37,7 +41,9 @@
     </thead>
     <% _.each(data, function(row) { %>
       <tr>
-        <td><%- row[0] %></td>
+        <td>
+          <a href="/?age=<%- row[0] %>&sex=<%- sex %>"><%- row[0] %></a>
+        </td>
         <td><%- row[1].toPrecision(6) %></td>
       </tr>
     <% }) %>
