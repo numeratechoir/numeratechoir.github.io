@@ -1,128 +1,18 @@
-<!DOCTYPE html>
+i<!DOCTYPE html>
 <html>
   <head>
     <title>Life Expectancy</title>
-    <link rel="stylesheet" type="text/css" href="./site.css"/>
+    <link rel="stylesheet" type="text/css" href="/site.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="/js/require_config.js"></script>
     <script src="/js/require.js"></script>
     <script type="text/javascript" src="/js/age.js"></script>
-    <script type="text/javascript">
-      $(function () {
-        $.get('data/dangers.json', function(data) {
-          // do something with your data
-        });
-
-
-        $('#total').highcharts({
-            chart: {
-                type: 'bar'
-            },
-            title: {
-                text: 'Chance of Death'
-            },
-            yAxis: {
-                min: 0,
-                max: 100,
-                title: {
-                    text: 'Percent'
-                }
-            },
-            legend: {
-                reversed: true
-            },
-            plotOptions: {
-                series: {
-                    stacking: 'normal'
-                }
-            },
-            series: [{
-                name: 'Cars',
-                data: [1]
-            }, {
-                name: 'Bikes',
-                data: [1]
-            }, {
-                name: 'Planes',
-                data: [1]
-            }]
-        });
-
-        $('#zoomed').highcharts({
-            chart: {
-                type: 'bar'
-            },
-            title: {
-                text: 'Likely Causes'
-            },
-            yAxis: {
-                min: 0,
-                max: 100,
-                title: {
-                    text: 'Percent'
-                }
-            },
-            legend: {
-                reversed: true
-            },
-            plotOptions: {
-                series: {
-                    stacking: 'normal'
-                }
-            },
-            series: [{
-                name: 'Cars',
-                data: [1]
-            }, {
-                name: 'Bikes',
-                data: [1]
-            }, {
-                name: 'Planes',
-                data: [1]
-            }]
-        });
-        
-        //var chart = $('#container').highcharts();
-        //chart.series[0].setValue([15])
-
-          $("input.cause").keyup(function() {
-              var planeVal = parseInt($("#a-amt").val())
-              var carVal  = parseInt($("#b-amt").val())
-              var bikeVal = parseInt($("#c-amt").val())
-
-              if (isNaN(planeVal) || isNaN(carVal) || isNaN(bikeVal)) {
-                $(".msg").show();
-                return;
-              }
-              $(".msg").hide();
-              var sum = planeVal + carVal + bikeVal;
-              var total = $('#total').highcharts();
-              var zoomed = $('#zoomed').highcharts();
-              total.series[0].setData([100*planeVal/10000])
-              total.series[1].setData([100*carVal/100000])
-              total.series[2].setData([100*bikeVal/100000])
-              zoomed.series[0].setData([100*planeVal/sum])
-              zoomed.series[1].setData([100*carVal/sum])
-              zoomed.series[2].setData([100*bikeVal/sum])
-          });
-      });
-    </script>
   </head>
   <body>
-    <div id="upper"></div>
-    <div id="total"></div>
-    <div id="zoomed"></div>
-    <form>
-      <p>Chance of dying this year (out of 100,000)</p>
-      <label for="a-amt">Plane</label>
-      <input class="cause" type="text" id="a-amt" value="20"/>
-      <label for="c-amt">Bike</label>
-      <input class="cause" type="text" id="c-amt" value="45"/>
-      <label for="b-amt">Car</label>
-      <input class="cause" type="text" id="b-amt" value="30"/>
-    </form>
-    <p class="msg hidden">Invalid input<p>
+  <div class="container" id="viewport"></div>
   </body>
 </html>
