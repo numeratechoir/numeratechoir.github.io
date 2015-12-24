@@ -17,8 +17,6 @@ def wisqars_to_json(fname):
              if row.Sex not in ["Males", "Females"]:
                  continue
              key = "%s-%s" % (row.Sex[0], row.AgeinYears)
-             print >>sys.stderr, row.Deaths
-             print >>sys.stderr, row.Population
              if row.Deaths == '.' or row.Population == '.':
                  break
              rate = float(row.Deaths) / float(row.Population)
