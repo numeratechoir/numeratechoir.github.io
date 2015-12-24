@@ -1,0 +1,30 @@
+#all {
+  height: 50px;
+  width: 500px;
+}
+
+#a {
+  background: blue;
+  width: 20%;
+}
+
+#b {
+  background: purple;
+  width: 30%;
+}
+
+#c {
+  background: red;
+  width: 45%;
+}
+
+#a, #b, #c {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  height: 50px;
+}
+
+input {
+  display: block;
+}

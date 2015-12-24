@@ -3,6 +3,7 @@
   <head>
     <title>Life Expectancy</title>
     <link rel="stylesheet" type="text/css" href="./site.css"/>
+    <link rel="stylesheet" type="text/css" href="./causes.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="http://media.flowingdata.com/js/d3.js?1.29.1"></script>
     <script type="text/javascript" src="http://media.flowingdata.com/js/d3.time.js?1.29.1"></script>
@@ -33,16 +34,39 @@
         </div>
         <div id="vis"></div>
         <div id="cite">Source: The World Bank; Graphic by: <a href="http://flowingdata.com">Nathan Yau</a></div>
+        <div id="causes">
+          <div id="all">
+            <span id="a"></span>
+            <span id="b"></span>
+            <span id="c"></span>
+          </div>
+          <form>
+            <label for="a-amt">Blue</label>
+            <input type="text" id="a-amt" value="20"/>
+            <label for="b-amt">Purple</label>
+            <input type="text" id="b-amt" value="30"/>
+            <label for="c-amt">Red</label>
+            <input type="text" id="c-amt" value="45"/>
+          </form>
+        </div>
       </div>
     </div>
     <script type="text/javascript" src="./main.js"></script>
     <script type="text/javascript">
+      function updateDivs(e) {
+        e.preventDefault();
+        var aVal = $("#a-amt").val()
+        var bVal = $("#b-amt").val()
+        var cVal = $("#c-amt").val()
+        var total = parseInt(aVal) + parseInt(bVal) + parseInt(cVal);
+        $("#a").css("width",  90*(aVal/total)+ "%");
+        $("#b").css("width",  90*(bVal/total)+ "%");
+        $("#c").css("width",  90*(cVal/total)+ "%");
+
+      }
       $(document).ready(function() {
-          $('#filters a').click(function() {
-              var countryId = $(this).attr("id");
-              $(this).toggleClass(countryId);
-              showRegion(countryId);
-          });
+          //$("#update-divs").click(updateDivs);
+          $("input").keyup(updateDivs);
           
       });
     </script>
