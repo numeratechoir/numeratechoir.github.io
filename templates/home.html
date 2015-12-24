@@ -1,8 +1,20 @@
 
 <div class="header-wrapper">
-  <a href="/?age=<%- age-1 %>" id="prev-link" class="link">&lt; <%- age - 1%></a>
+  <a href="/?age=<%- age-1 %>&sex=<%- sex %>" id="prev-link" class="link">&lt; <%- age - 1%></a>
   <h1>Life expectancy for age <%- age %></h1>
-  <a href="/?age=<%- age+1 %>" id="next-link" class="link"><%- (age+1) %> &gt;</a>
+  <a href="/?age=<%- age+1 %>&sex=<%- sex %>" id="next-link" class="link"><%- (age+1) %> &gt;</a>
+
+  <div class='sex-selector'>
+    <% if (sex == 'male') { %>
+      Male
+      |
+      <a href="?age=<%- age %>&sex=female">Female</a>
+    <% } else { %>
+      <a href="?age=<%- age %>&sex=male">Male</a>
+      |
+      Female
+    <% } %>
+  </div>
 
   <h4>There is a 50% chance you will live to at least age <%- expectedAge %></h4>
 </div>

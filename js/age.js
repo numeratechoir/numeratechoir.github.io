@@ -1,4 +1,5 @@
 /* globals require */
+/* globals $ */
 
 
 require([
@@ -36,12 +37,10 @@ require([
   
     var urlParams = getUrlParams();
     var age = parseInt(urlParams.age || 30);
+    var sex = urlParams.sex || 'male';
     
-    var data = getDataForAge(age);
+    var data = getDataForAge(age, sex);
     
-    var max = _.max(data, function(row){ return row[1]; });
-    var maxChance = max[1];
-  
     var expectedAge = age;
     var pct = 0;
     _.find(data, function(row) {
@@ -52,7 +51,12 @@ require([
       }
     });
     
-    var html = homeTemplate({age: age, data: data, expectedAge: expectedAge});
+    var html = homeTemplate({
+      age: age, 
+      data: data, 
+      expectedAge: expectedAge,
+      sex: sex,
+    });
   
     $('body').html(html);
   
@@ -61,7 +65,7 @@ require([
         text: null,
       },
       xAxis: {
-        categories: _.map(data, function(d) { return d[0] }), 
+        categories: _.map(data, function(d) { return d[0]; }), 
       },
       yAxis: {
         title: {
@@ -75,7 +79,7 @@ require([
       },
       series: [{
         name: 'Baseline Life Expectancy',
-        data: _.map(data, function(d) { return d[1] })
+        data: _.map(data, function(d) { return d[1]; })
       }]
     });
 
