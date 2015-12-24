@@ -58,8 +58,7 @@ require([
   
     $('#container').highcharts({
       title: {
-        text: 'Monthly Average Temperature',
-        x: -20 //center
+        text: null,
       },
       xAxis: {
         categories: _.map(data, function(d) { return d[0] }), 
@@ -75,7 +74,7 @@ require([
         }]
       },
       series: [{
-        name: 'Tokyo',
+        name: 'Baseline Life Expectancy',
         data: _.map(data, function(d) { return d[1] })
       }]
     });
