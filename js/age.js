@@ -85,13 +85,14 @@ require([
 
     var plot = function(series_data) {
       var chart = $('#container').highcharts();
+      var values = _.map(series_data, function(d) { return d[1]; })
       if (chart.series.length === 1) {
         chart.addSeries({
           name: 'Customized Life Expectancy',
-          data: _.map(series_data, function(d) { return d[1] })
+          data: values
         });
       } else {
-        chart.series[1].setData(series_data);
+        chart.series[1].setData(values);
       }
     };
 
