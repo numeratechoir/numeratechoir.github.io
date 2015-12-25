@@ -5,11 +5,13 @@
 require([
   'make_chart_data',
   'underscore',
-  'text!templates/home.html'
+  'text!templates/home.html',
+  'text!templates/single_cause.html'
 ], function(
   getDataForAge,
   _,
-  homeHtml
+  homeHtml,
+  singleCauseHtml
 ) {
   
   $(function () {
@@ -57,7 +59,82 @@ require([
       expectedAge: expectedAge,
       sex: sex,
     });
+
+    var singleCauseTemplate = _.template(singleCauseHtml);
   
+    $.get('data/dangers.json', function(data) {
+      var chartSeries = [];
+      var ageSex;
+      if (urlParams.sex == "male") {
+        ageSex = "M-" + urlParams.age;
+      } else {
+        ageSex = "F-" + urlParams.age;
+      }
+      var causes = data[ageSex];
+      var cum = 0;
+      for (var name in causes) {
+        var singleCauseHtml = singleCauseTemplate({
+          name: name,
+          val: causes[name]
+        });
+        $("#cause-inputs").append(singleCauseHtml);
+        chartSeries.push({name: name, data:[causes[name]]});
+        cum += causes[name];
+      }
+
+      $('#total').highcharts({
+          chart: {
+              type: 'bar'
+          },
+          title: {
+              text: 'Chance of Death'
+          },
+          yAxis: {
+              min: 0,
+              max: 100000,
+              title: {
+                  text: 'Percent'
+              }
+          },
+          legend: {
+              reversed: true
+          },
+          plotOptions: {
+              series: {
+                  stacking: 'normal'
+              }
+          },
+          series: chartSeries
+      });
+
+      $('#zoomed').highcharts({
+          chart: {
+              type: 'bar'
+          },
+          title: {
+              text: 'Likely Causes'
+          },
+          yAxis: {
+              min: 0,
+              max: cum,
+              title: {
+                  text: 'Percent'
+              }
+          },
+          legend: {
+              reversed: true
+          },
+          plotOptions: {
+              series: {
+                  stacking: 'normal'
+              }
+          },
+          series: chartSeries
+      });
+
+      
+    });
+
     $('#upper').html(html);
   
     $('#container').highcharts({
