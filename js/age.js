@@ -65,10 +65,10 @@ require([
     $.get('data/dangers.json', function(data) {
       var chartSeries = [];
       var ageSex;
-      if (urlParams.sex == "male") {
-        ageSex = "M-" + urlParams.age;
+      if (sex == "male") {
+        ageSex = "M-" + age;
       } else {
-        ageSex = "F-" + urlParams.age;
+        ageSex = "F-" + age;
       }
       var causes = data[ageSex];
       var cum = 0;
@@ -146,7 +146,7 @@ require([
       },
       yAxis: {
         title: {
-          text: 'Temperature (°C)'
+          text: 'Likelihood of not living'
         },
         plotLines: [{
           value: 0,
