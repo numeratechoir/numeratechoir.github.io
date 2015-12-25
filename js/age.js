@@ -93,7 +93,7 @@ require([
               min: 0,
               max: 100000,
               title: {
-                  text: 'Percent'
+                  text: 'Deaths out of 100,000'
               }
           },
           legend: {
@@ -118,7 +118,7 @@ require([
               min: 0,
               max: cum,
               title: {
-                  text: 'Percent'
+                  text: 'Deaths out of 100,000'
               }
           },
           legend: {
